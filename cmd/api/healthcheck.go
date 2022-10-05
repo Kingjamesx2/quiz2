@@ -3,7 +3,6 @@
 package main
 
 import (
-	"encoding/json"
 	"net/http"
 )
 
@@ -16,19 +15,9 @@ func (app *application) healthcheckHandler(w http.ResponseWriter, r *http.Reques
 		"version":     version,
 	}
 
-	//convert our map into a JSON object
-	js, err := json.Marshal(data)
+	err := app.writeJSON(w, http.StatusOK, data, nil)
 	if err != nil {
 		app.logger.Println(err)
-		http.Error(w, "the server encountered a problem and could not process yoour request.", http.StatusInternalServerError)
-		return
+		http.Error(w, "The server encountered a process and could not process your request", http.StatusInternalServerError)
 	}
-
-	//add a newline to make viewing on the terminal easier
-	js = append(js, '\n')
-
-	//specify that we will serve our responses using json
-	w.Header().Set("Content-Type", "application/json")
-	//write the []byte slice containing the JsoN response body
-	w.Write(js)
 }
