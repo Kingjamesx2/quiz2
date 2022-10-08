@@ -5227,7 +5227,7 @@ var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $author$project$Star$viewStarModel = function (model) {
 	var msg = model.liked ? $author$project$Star$Unlike : $author$project$Star$Like;
-	var buttonType = model.liked ? 'grade_rounded' : 'grade';
+	var buttonType = model.liked ? 'star_outlined' : 'star';
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(

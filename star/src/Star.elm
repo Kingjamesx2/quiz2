@@ -24,7 +24,7 @@ viewStarModel : { liked : Bool } -> Html Msg
 viewStarModel model = 
     let
         buttonType = 
-            if model.liked then "grade_rounded" else "grade"
+            if model.liked then "star_outlined" else "star"
         msg =
             if model.liked then Unlike else Like
     in
