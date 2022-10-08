@@ -57,28 +57,25 @@ func (app *application) createFileEntryHandler(w http.ResponseWriter, r *http.Re
 
 // // showRandomizeStringHandler for the "GET /vq.schools/:id" endpoint
 func (app *application) showRandomizeStringHandler(w http.ResponseWriter, r *http.Request) {
+
 	id, err := app.readIDParam(r)
 	if err != nil {
 		app.notFoundResponse(w, r)
 		return
 	}
-	int1 := int(id)
-	tools := &data.Tools{
-		Int: int1,
-	}
-	// 	v := validator.New()
-	// 	if data.ValidateInt(v, tools); !v.Valid() {
-	// 		app.failedValidationResponse(w, r, v.Errors)
-	// 		return
-	// }
-	strw := tools.GenerateRandomString(int1)
+
+	integer := int(id)
+	tools := &data.Tools{}
+
+	random := tools.GenerateRandomString(integer)
 	data := envelope{
-		"id":            int1,
-		"random_string": strw,
+		"This is your randomize string": random,
+		"Your id is ":                   integer,
 	}
 	err = app.writeJSON(w, http.StatusOK, data, nil)
 	if err != nil {
 		app.serverErrorResponse(w, r, err)
 		return
 	}
+
 }

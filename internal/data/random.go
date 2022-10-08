@@ -6,11 +6,13 @@ import (
 	"crypto/rand"
 )
 
-type Tools struct{}
+type Tools struct {
+	Int int `json:"int"`
+}
 
 const randomStringSource = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+_#$-!~"
 
-func (t *Tools) generateRandomString(length int) string {
+func (t *Tools) GenerateRandomString(length int) string {
 	s := make([]rune, length)
 	r := []rune(randomStringSource)
 
